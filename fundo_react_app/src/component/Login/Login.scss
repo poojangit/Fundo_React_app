@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* position: relative; */
+}
+.login-cnt {
+    /* border: 2px solid hotpink; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+
+}
+.login-form-cont{
+    border: 1px solid rgb(160, 155, 155);
+    padding: 10px 20px 30px 20px;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+}
+
+.fnd-txt-nam{
+    color: orange;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 2px;
+
+    h1 {
+        margin: 5px;
+    }
+    h2, h3{
+        color: black;
+        margin: 5px;
+    }
+}
+
+.inputField {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    
+    p{
+        color: rgb(25, 25, 97);
+        font-size:small;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+.inputField input {
+    padding: 15px;
+    width: 320px;
+}
+
+
+.create-login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        color: rgb(25, 25, 97);
+        font-size:small;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+.create-login button {
+    background-color: rgb(34, 34, 114);
+    color: rgb(242, 242, 247);
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+}
+.bottomBar{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 18px;
+}
+.dropdown-option {
+    color: rgb(41, 41, 41);
+    background-color: white;
+    border: none;
+    
+}
+
+.link {
+    display: flex;
+    gap: 25px;
+    margin: 5px 0px 0px 0px;
+}
+.link p {
+    text-decoration: none;
+    color: rgb(41, 41, 41);
+    font-size: smaller;
+    font-weight: 600;
+    margin: 0;
+}
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+    .login-form-cont {
+        padding: 20px;
+    }
+
+    .inputField input {
+        width: 100%;
+    }
+
+    .create-login {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .create-login p, .create-login button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .bottomBar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .link {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
