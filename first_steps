@@ -1,0 +1,6 @@
+Step 1 : created a directory. cd folder_name
+Step 2 : to create a react app = npx create-react-app project-name
+step 3 : installed sass = npm install node-sass
+ SCSS(Sassy CSS) - SCSS (Sassy CSS) is a preprocessor scripting language that is interpreted or compiled into CSS. SCSS allows you to use variables, nested rules and functions, making your CSS more maintainable and reusable.
+step 4 : inside the src folder, create a component folder, inside component folder , create login.jsx and login.scss
+
