@@ -1,0 +1,73 @@
+----------------------npx--------------------
+is a npm package runner which gets installed when you install node and that is how we are directlt able to run create-react-app without having to install it. npc takes care of it
+
+npx create-react-app<project_name>
+
+----------------------npm---------------------
+here we create create-react-app globally and then use package to generate the package globally
+
+npm install create-react-app -g
+create-react-app<project-name>
+
+--------------------------package.json-----------------
+
+It contains metadata and configuration for your project, including dependencies, scripts, and other settings.
+
+1. Basic Information
+"name": "react_basics": The name of your project.
+"version": "0.1.0": The current version of your project.
+"private": true: Indicates that this project is private and not meant to be published to npm.
+
+2. Dependencies
+This section lists the packages your project depends on:
+"@testing-library/jest-dom": "^5.17.0": Provides custom jest matchers for testing DOM nodes.
+"@testing-library/react": "^13.4.0": Provides utilities for testing React components.
+"@testing-library/user-event": "^13.5.0": Provides utilities to simulate user interactions.
+"react": "^18.3.1": The React library itself.
+"react-dom": "^18.3.1": Provides DOM-specific methods for React.
+"react-scripts": "5.0.1": Scripts and configuration used by Create React App.
+"web-vitals": "^2.1.4": Provides tools to measure web performance metrics.
+
+3. Scripts
+These are commands that can be run using npm run <script-name>:
+"start": "react-scripts start": Starts the development server.
+"build": "react-scripts build": Creates a production build of your app.
+"test": "react-scripts test": Runs the test suite.
+"eject": "react-scripts eject": Ejects the configuration files from Create React App, making them editable.
+
+4. ESLint Configuration
+"eslintConfig": Configuration for ESLint, which helps with code linting and formatting. It extends from react-app and react-app/jest, which are default configurations for React projects created with Create React App.
+
+5. Browserslist
+"browserslist": Specifies which browsers your app supports. It helps configure the build tools to ensure compatibility with these browsers:
+"production": Targets a broad range of browsers for production builds.
+"development": Targets the latest versions of popular browsers for development builds.
+
+---------------------------components-------------------------
+
+components describe a part of the UI.
+they are re-usable and can be nested inside other components.
+it is a building blocks of any react application.
+components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
+components can be reused
+
+stateless functional components: 
+The simplest way to define a component is to write a JavaScript function:
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+statefull class components - are the regular ES6 classes that extends the component class from the react lib
+they must contain a render method, which in turn return the HTML
+
+class Welcome extends React.components {
+render() {
+return  <h1>Hello, {this.props.name}</h1>
+}
+}
+
+------------------------functional components-------------
+
+They are simply a javascript functions.
+They optionally recieves a properties as props and returns HTML(JSX) which describe the UI
