@@ -69,5 +69,97 @@ return  <h1>Hello, {this.props.name}</h1>
 
 ------------------------functional components-------------
 
-They are simply a javascript functions.
-They optionally recieves a properties as props and returns HTML(JSX) which describe the UI
+.They are simply a javascript functions.
+.it is also called stateless/dumb/presentational component
+.They optionally recieves a properties as props and returns HTML(JSX) which describe the UI
+.no render method is required
+.initally it is stateless component , but we can make stateless to statefull by react hook 
+.this keyword is absent
+.constructor is not required 
+.not complex . easily readable
+
+import React from 'react'
+function Greet () {
+ return (
+ <div></div>
+ )
+}
+-----------------------------------------------------------------------------------------------------------
+
+-------------------------Class Components------------------------------------
+
+.they optionally recieves props and returns HTML
+.it is also called stateful/smart/container
+.it will extends the react component and defines a render() methods and returns the react element
+.render method is required
+.it is known as statefull component and it is managing their own state by using this.state
+.constructor is required
+.it is very complex to use
+.provide life cycle hooks
+
+
+import React, {Component} from 'react'
+class Welcome extends Component {
+    render() {
+        return <h1>Class Component</h1>
+    }
+}
+export default Welcome
+
+--------------------------------------------------------------------------------------------------
+
+---------------------------Hooks--------------------
+
+React Hooks are functions that let you use state and other React features in functional components. They were introduced in React 16.8 to allow developers to manage state and side effects in functional components, which previously could only be done in class components. Hooks provide a more concise and functional way to work with React, making code easier to read and maintain.
+
+--------------------------JSX--------------------------------------------
+
+. Javascript XML (JSX) - Extension to the Javascript language syntax
+. with react lib it is an XML-like code for elements and components
+. just like xml JSX tags have a tag name attributes and children
+. JSX is not a necessity to write a react application 
+. JSX makes your react code simpler and elegant
+. JSX ultimately transpiles to pure JavaScript which is understood by the browsers
+
+import React from "react";
+
+const Hello = () => {
+    // return (
+    //     <div>
+    //         <h1>Hello Pooja .....</h1>
+    //     </div>
+    // )
+
+    // ! without using JSX
+
+    return React.createElement('div', null, React.createElement('h1', null, 'Good night') )
+}
+
+export default Hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
