@@ -1,0 +1,39 @@
+Use npm for managing dependencies in your project, running scripts defined in package.json, and publishing packages.
+
+Use npx for running packages or scripts that you don't want to install globally or include as dependencies in your project. It's particularly useful for one-time tasks or running executables from packages.
+
+cdn - (Content Delivery Network) it does not install the dependencies on your server. purpose is to serve static files from a network of distributed servers to improve load times and reduce the load on the server.
+
+single page is a type of SPA) - application or website that interacts with the user dynamically rewritting the current page rather than loading entire new pages from the server.
+
+react DOM - is a package that provides DOM-specific methods that enable react to interact with the brower's documnet object model.
+
+ReactDOM.render() = this method is used to render a react component into a specific DOM node.
+
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function App() {
+    return <h1>Hello, React DOM!</h1>;
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+.scss is a file extension for Sass (Syntactically Awesome Style Sheets) files. 
+SCSS is a powerful extension of CSS that brings additional features and capabilities to style sheets, making them more dynamic and easier to maintain.
+
+bundlers are the tools that package our application code , assets, and dependencies into a single set of files
+
+useState - useState is a Hook in React that allows functional components to manage and track state. 
+
+Hot Module Replacement (HMR) is a feature commonly used in modern JavaScript development that allows you to update modules in a running application without requiring a full page reload. 
+
+JSX - (JavaScript XML) is a syntax extention for javascript commonly used with react to describe what the UI should look like . it allows developers tp write HTML-like code within the javascipt , making it easir to create and manage UI components.
+
+JSX is not natively understood by browsers; it needs to be compiled into plain JavaScript. This compilation process is typically handled by tools like Babel.
+
+createRoot is a method introduced in React 18 as a part of the new root API. It is used to create a root for rendering a React application. 
+
+createElement is a function used to create React elements programmatically. While JSX is more commonly used for defining elements, createElement is useful for dynamically creating elements without JSX.
+
