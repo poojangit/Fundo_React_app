@@ -1,5 +1,5 @@
 ----------------------npx--------------------
-is a npm package runner which gets installed when you install node and that is how we are directlt able to run create-react-app without having to install it. npc takes care of it
+is a npm package runner which gets installed when you install node and that is how we are directlt able to run create-react-app without having to install it. npx takes care of it
 
 npx create-react-app<project_name>
 
@@ -136,6 +136,246 @@ const Hello = () => {
 }
 
 export default Hello
+
+
+-------------------------Props---------------------------------------------------
+
+. Props are the properties that the optional input it can take. 
+. it also allows the component to be dynamic
+.props are immutable , their values cannot be changed
+. props get passed to the component
+. function parameters
+. props - functional components
+. this.props - class components
+
+
+----------------------component state--------------------------------------------
+
+. state is managed within the component
+. variables declared in the function body
+.state can be changed
+. useState Hook - functional components
+. this.state - class components
+
+
+. this.setState - this method accepts an object nothing but the new state of the component
+
+-----------------------useState-------------------------------------------
+
+useState: This is a React hook that lets you add state to functional components.
+
+-----------------------setState----------------------------------------
+
+in order to change the state we have use setState method
+. do not modify the state directly use setState instead. if we use state directly react will not render the component .
+. set state will make to know that now it has to render the component
+. in browser the count will be 1 , but in console it will be 0 because, calls to setstate are asyncronous ,. console.log is called before the state is actually set .
+. setState method has two parameters - first is the state object and second is a parameter
+
+.always make use of setState and never modify the state directly
+. code has to be excecuted after the state has been updated ? Place that code in the call back function which is the second argument to he setState method
+. when you have to update the state based on the previous state value, pass in a function as an argument instead of the regular object.
+
+-------------------------Destructuring props and state in react----------------------------
+
+. it unpacks  the values from the arrays or properties from the object into distinct variables
+. it improves code readability
+
+--------------------------Event Handling-----------------------------------------
+
+function FunctionClick() {
+
+    function clickHandler () {
+        console.log("Button clicked");
+    }
+  return (
+    <div>
+      <button onClick={clickHandler}>Click</button>
+    </div>
+  );
+}
+
+export default FunctionClick;
+
+. we have to pass the function and not the function call. do not add ().
+
+---------------------------Binding Event Handlers---------------------------------------
+
+why to bind ?
+--
+
+
+ways of binding
+
+{/* first approach---> Binding in render */}
+        {/* <button onClick={this.clickHandler.bind(this)}>Click</button> */}
+ 
+ . first approach is no need to use because of performance implecation
+        
+        {/* Seccond Approach---> Arrow function in render*/}
+        {/* <button onClick={() => this.clickHandler()}> Click</button> */}
+  . easiest way to pass parameters
+  . when to use -> if we our code doesnot involve rerendering nested childen component
+     
+        {/* Third approach ---> binding in the class constructor*/}
+        {/* <button onClick={this.clickHandler}>click</button> */}
+        
+   . binding in the constructor is  a best approach
+
+        {/* last -> using arrow function as a class property */}
+        
+        
+
+---------------------------Methods as props----------------------------------------
+
+
+. used when the children component wants to call the parent component
+. in the parent component, define a method. on the child component tag past the method as a prop , in the child componnet access the method using the props object. if at all if we want pass the parameter use the arrow function in tags by the way we can destructure the props object in the functional component
+
+
+---------------------------Conditional Rendering----------------------------------------
+
+.if/else
+. element variables
+. Ternary conditional operator
+. short circuit operator
+
+. if else methods dont work inside jsx
+
+----------------------------List Rendering-----------------------------------------
+
+.when we create a react component the component goes through a several stages in its lifecycle
+.react provides a built in methods that we can override at the perticular stages in the life cycle
+. these methods does not come in functional component, with the new feature proposal of hook, there
+. there is a useEffect hook which is similar to the lifecycle methods 
+
+--life cycle methods available for class components--
+
+.mouting 
+- called when an instance of a component is being created and inserted into the DOM
+- constructor, static getDerivedStateFromProps, render and componentDidMount
+
+.updating
+ - when a component is being re-rendered as a result of chamges to either its props or state.
+ - static getDerivedStateFromProps, shouldComponentUpdate, render, getSnapshotBeforeUpdate and componentDidUpdate
+ 
+.unmouting 
+- when a component is being removed from the DOM
+- componentWillUnmount
+
+.error handling 
+- called when there is an error during rerendering, in a lifecycle method, or in the constructor of any child component
+- static getDerivedStateFromError and componentDidCatch
+
+----------mounting lifecycle methods-------
+
+1. costructor(props) 
+   - a special function that will get called whenever a new component is created
+   - it is perfect for initializing the state
+   - or binding the event handlers to the class instance
+   - do not make a http request within a constructor
+   - first thing to call is super(props) , this will call a base class constructor
+2. static getDerivedStateFromProps
+   - when the state of the component depends on changes in props over time
+   - do have the access for this keyword
+3. render 
+   - only required method
+   - read props & state and return JSX
+   - do not change state or interact with DOM or make ajax calls
+4. componentDidMount
+   - invoked immediately after a component and all its children components have been rendered to the 	DOM
+
+--------updating lifecycle------
+
+1. static getDirivedStateFromProps(props, state)
+  - method is called every time a componnet is re-rendered
+  - this method is used when the state is dependent on the props of a component
+2. shouldComponnet Update(nextProps, nextState)
+   - it dectates if the component should re-render or not
+   -performance optimization
+   - avoid caling the set state methods
+   - avoid using http request
+3. render()
+4. getSnapsShotBeforeUpdate(prevProps, prevState)
+
+-------unmounting--------
+
+1. componentWillUnmount() 
+ - this method is invoked immediately beore a component is unmounted and destroyed
+ - here we can perform a task like cancelling any network requests, removing event handlers, cancelling any subscriptions and also invalidating timers.
+ - do not call setState method . that is because component will never rerender after it is being unmounted.
+
+---- error handling phase methods ---
+
+1. static getDerivedStateFRomError(error)
+2. componentDidCatch(error, info)
+
+these two are called when there is an error either during rendering, in a lifecycle method , or in the constructor of any child component
+
+------------------------------------UseEffect Hooks---------------------------
+
+. we have seen the side effects in class component. such as updating a DOM , fetching the API from the endpoint, etc.
+. it lets to perform a side effects in functional component.
+. it is a clone replacement for componentDidMount, componentDidUpdatemount
+
+
+------------------------------------------Refs------------------------------------------------
+
+.refs make it possible to access dom nodes directly within react.
+.when to use this? - 
+   as soon as if I open login page it should focus on the input field to fill the details
+   
+ -----------creating a ref---------
+ 
+step 1 : first create a class component and one input field in the return 
+ste 2: then create a constructor and inside a constructor create a ref as
+           this.inputRef = React.createRef()
+step 3 : next step is to create of ref in the input field and call the created ref from the constructor.
+	  <input ref = {this.inputRef}/>
+step 4 : then create a method - componentDidMount() and inside that log the ref that is created and call the focus()
+	componentDidMount() {
+	this.inputRef.current.focus()
+	}
+
+-----------fetching a value--------
+to fetch the details from the input field,
+
+step1 : add one button and add a click event 
+    <button onClick= {this.clickHandler}/>
+step2 : define a onClick event  and inside that alert the value
+    clickHandler = () => {
+    alert(this.inputRef.current.value)
+    }
+
+----------Refs with class component--------
+
+----------forwarding Refs----------
+
+. refForwarding is one of the technique for automatically passing a ref through a component to one of its children 
+	
+step1 : Parent component creates a ref and attaches to its child component.
+step2 : the child component sees the ref and tell the parent hey im not the guy you are looking for you want the native input element right let me directly introduce you to him.
+step3 : so the child component receives the ref from the parent component and attaches it to the native input element
+step4 : Now the parent component can directly access this input element using this.refvariable.current. the child element is basically forwarding this reference
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
