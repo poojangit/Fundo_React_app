@@ -1,17 +1,24 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    /* position: relative; */
+// body {
+//     margin: 0;
+//     padding: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     /* position: relative; */
+// }
+
+*{
+    padding: 0px;
+    margin: 0px;
 }
-.login-cnt {
+
+.login-cont {
     /* border: 2px solid hotpink; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 .login-form-cont{
     border: 1px solid rgb(160, 155, 155);
@@ -84,7 +91,7 @@ body {
 .bottomBar{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 27%;
     padding-top: 18px;
 }
 .dropdown-option {

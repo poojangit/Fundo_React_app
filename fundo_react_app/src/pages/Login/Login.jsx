@@ -1,43 +1,70 @@
-
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import './Login.scss'
+import './Login.scss';
+import { signIn } from '../../services/UserServices';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-// need to use useState - it ia a hook to define state variables for the input fields and error messages
+    const navigate = useNavigate()
+    const [loginObj, setLoginObj] = useState({
+        email: '',
+        password: ''
+    });
 
-const [emailOrPhone, setEmailOrPassword] = useState('')
-const [password, setPassword] = useState('')
-const [emailError, setEmailError] = useState('')
-const [passwordError, setPasswordError] = useState('')
+    const [errObj, setErrObj] = useState({
+        emailError: '',
+        passwordError: ''
+    });
 
-const handleLogin = () => {
-    let isValidField = true
-    if(!emailOrPhone){
-        setEmailError('Please enter your email or phone')
-        isValidField = false
-    }
-    else {
-        setEmailError('')
-    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginObj((prev) => ({
+            ...prev,
+            [name]: value
+        }));
+    };
 
-    if(!password) {
-        setPasswordError('Please Enter your password')
-        isValidField = false
-    }
-    else {
-        setPasswordError('')
-    }
-    if(isValidField){
-        console.log('login Success');
-    }
-}
+    const handleLogin = () => {
+        let isValidField = true;
+        const newErrObj = {
+            emailError: '',
+            passwordError: ''
+        };
+
+        if (!loginObj.email) {
+            newErrObj.emailError = 'Please enter your email or phone';
+            isValidField = false;
+        }
+
+        if (!loginObj.password) {
+            newErrObj.passwordError = 'Please enter your password';
+            isValidField = false;
+        }
+
+        setErrObj(newErrObj);
+
+        if (isValidField) {
+            console.log(loginObj);
+            // console.log('Login Success');
+            signIn(loginObj).then((response)=>{
+                console.log(response.data.id);
+                localStorage.setItem("token",response.data.id)
+                console.log('Login successful');
+                navigate("/dashboard")
+                // const token = localStorage.getItem("token")
+                // console.log(token);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+        }
+    };
 
     return (
         <div className="login-cont">
             <div className="login-form-cont">
-
                 <div className='fnd-txt-nam'>
                     <h1>Fundo</h1>
                     <h2>Sign in</h2>
@@ -45,43 +72,39 @@ const handleLogin = () => {
                 </div>
 
                 <div className="inputField">
-                    {/* <TextField id="email" label="Email or Phone" variant="outlined" /> */}
-
                     <TextField
-                        error = {!!emailError}
+                        error={!!errObj.emailError}
+                        name="email"
                         id="email"
-                        label="Email or Phone"
-                        defaultValue=""
-                        value={emailOrPhone}
-                        helperText={emailError}
-                        onChange={(e) => setEmailOrPassword(e.target.value)}
-                        variant='outlined'
+                        label="Email"
+                        variant="outlined"
+                        value={loginObj.email}
+                        onChange={handleChange}
+                        helperText={errObj.emailError}
                     />
                 </div>
 
                 <div className="inputField">
-                    {/* <TextField id="password" label="Password" variant="outlined" /> */}
-
                     <TextField
-                        error = {!!passwordError}
+                        error={!!errObj.passwordError}
+                        name="password"
                         id="password"
                         label="Password"
-                        defaultValue=""
-                        value={password}
-                        helperText={passwordError}
-                        onChange={(e) => setPassword(e.target.value)}
-                        variant='outlined'
+                        variant="outlined"
+                        type="password"
+                        value={loginObj.password}
+                        onChange={handleChange}
+                        helperText={errObj.passwordError}
                     />
-                    <p >Forgot password</p>
+                    <p>Forgot password</p>
                 </div>
-
 
                 <div className="create-login">
-                    <p >Create account</p>
+                    <p>Create account</p>
                     <Button variant="contained" onClick={handleLogin}>Login</Button>
                 </div>
-
             </div>
+
             <div className="bottomBar">
                 <div>
                     <select className="dropdown-option">
@@ -91,11 +114,11 @@ const handleLogin = () => {
                 <div className="link">
                     <div><p>Help</p></div>
                     <div><p>Privacy</p></div>
-                    <div><p>terms</p></div>
+                    <div><p>Terms</p></div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

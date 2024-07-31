@@ -1,30 +1,17 @@
 import React from "react"
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NavBar from "../../component/NavBar/NavBar";
+import Drawer from "../../component/Drawer/Drawer";
+import NavDrawer from "../../component/Drawer/Drawer";
 
 
 function Dashboard() {
     return (
-        <div className="main-cnt">
-            <div className="head-nav-cnt">
-                <div className="right-nav-head">
-                    <div className="hori-path">
-
-                    </div>
-                    <div>
-                    keep icon
-                    </div>
-                </div>
-                <div className="search-nav"></div>
-                <div className="profile-head">
-                    <div> <Avatar src="/broken-image.jpg" /></div>
-                </div>
-            </div>
-            <div>
-                hii
-            </div>
-
-        </div>
+       <div>
+       <NavDrawer/>
+       </div>
     )
 }
 

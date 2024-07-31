@@ -5,54 +5,97 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 // import signUpImage from './assets/signup.png';
 import './Signup.scss'
+import { signUp } from '../../services/UserServices';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [userName, setUserName] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const navigate = useNavigate()
+    const [signUpObj, setSignupObj] = React.useState({ 
+        firstName: "", 
+        lastName: "", 
+        email: "", 
+        password: "", 
+        service: "advance" 
+        });
+
+    const [errObj, setErrObj] = React.useState ({
+        firstNameError: false,
+        firstNameHelper: "",
+        userNameError: false,
+        userNameHelper: "",
+        passwordError: false,
+        passwordHelper: "",
+        confirmPasswordError: false,
+        confirmPasswordHelper: "",
+    })
+
     const [showPassword, setShowPassword] = useState('false')
-    const [firstNameError, setFirstNameError] = useState('')
-    const [userNameError, setUsernameError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
-    const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
+
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setSignupObj((prev) => ({
+            ...prev,
+            [name] : value
+        }))
+    }
 
     const handleRegister = () => {
-
         let isValid = true;
+        const newErrObj = {
+            firstNameError: false,
+            firstNameHelper: "",
+            userNameError: false,
+            userNameHelper: "",
+            passwordError: false,
+            passwordHelper: "",
+            confirmPasswordError: false,
+            confirmPasswordHelper: "",
+        };
 
-        if (!firstName) {
-            setFirstNameError('Please enter your name');
+        if (!signUpObj.firstName) {
+            newErrObj.firstNameError = true;
+            newErrObj.firstNameHelper = 'Please enter your name';
             isValid = false;
-        } else {
-            setFirstNameError('');
         }
 
-        if (!userName) {
-            setUsernameError('Please enter your username');
+        if (!signUpObj.email) {
+            newErrObj.userNameError = true;
+            newErrObj.userNameHelper = 'Please enter your username';
             isValid = false;
-        } else {
-            setUsernameError('');
         }
 
-        if (!password) {
-            setPasswordError('Password is mandatory');
+        if (!signUpObj.password) {
+            newErrObj.passwordError = true;
+            newErrObj.passwordHelper = 'Password is mandatory';
             isValid = false;
-        } else {
-            setPasswordError('');
         }
 
-        if (!confirmPassword) {
-            setConfirmPasswordError('Confirm password field is mandatory');
-            isValid = false;
-        } else {
-            setConfirmPasswordError('');
-        }
+        // if (!signUpObj.confirmPassword) {
+        //     newErrObj.confirmPasswordError = true;
+        //     newErrObj.confirmPasswordHelper = 'Confirm password field is mandatory';
+        //     isValid = false;
+        // } else if (signUpObj.password !== signUpObj.confirmPassword) {
+        //     newErrObj.confirmPasswordError = true;
+        //     newErrObj.confirmPasswordHelper = 'Passwords do not match';
+        //     isValid = false;
+        // }
+
+        setErrObj(newErrObj);
 
         if (isValid) {
-            console.log('Registration successful');
+            signUp(signUpObj)
+            .then((response)=>{
+                console.log(response);
+                console.log('Registration successful');
+                navigate("/")
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+            
         }
     };
 
@@ -65,79 +108,69 @@ function Signup() {
                     <div className="inp-fields">
                         <div className="fname-lname-box">
                             <div>
-
-                                {/* <TextField id="outlined-basic" className='inp-box' label="First Name*" variant="outlined" /> */}
                                 <TextField
-                                    error={!!firstNameError}
-                                    id="outlined-basic"
+                                    error={errObj.firstNameError}
+                                    name="firstName"
                                     className='inp-box'
                                     label="First Name*"
                                     variant="outlined"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    helperText={firstNameError}
+                                    value={signUpObj.firstName}
+                                    onChange={handleChange}
+                                    helperText={errObj.firstNameHelper}
                                 />
                             </div>
                             <div>
-                                {/* <TextField id="outlined-basic" className='inp-box' label="Last Name*" variant="outlined" /> */}
                                 <TextField
-
-                                    id="outlined-basic"
+                                    name="lastName"
                                     className='inp-box'
                                     label="Last Name*"
                                     variant="outlined"
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
+                                    value={signUpObj.lastName}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
                         <div className="inp-uname-box">
                             <div className='uname-inp-box-field'>
-                                {/* <TextField id="outlined-basic" label="Username*"  variant="outlined" /> */}
                                 <TextField
-                                    error={!!userNameError}
-                                    id="outlined-basic"
+                                    error={errObj.userNameError}
+                                    name="email"
                                     className='inp-box'
                                     label="User Name*"
                                     variant="outlined"
-                                    value={userName}
-                                    helperText={userNameError}
-                                    onChange={(e) => setUserName(e.target.value)}
+                                    value={signUpObj.email}
+                                    onChange={handleChange}
+                                    helperText={errObj.userNameHelper}
                                 />
                             </div>
                             <span className="pass-txt">You can use numbers, letters & periods</span>
                         </div>
                         <div className="password-div">
                             <div className="inp-pass_confrim-cnt inp-div">
-                                {/* <TextField id="outlined-basic" className='inp-box' label="Password*"  variant="outlined" /> */}
                                 <TextField
-                                    id="outlined-basic"
+                                    name="password"
                                     className='inp-box'
                                     label="Password*"
                                     variant="outlined"
                                     type={showPassword ? 'text' : 'password'}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    error={!!passwordError}
-                                    // helperText={passwordError}
+                                    value={signUpObj.password}
+                                    onChange={handleChange}
+                                    error={errObj.passwordError}
+                                    helperText={errObj.passwordHelper}
                                 />
-                                {/* <TextField id="outlined-basic" className='inp-box' label="Confrim*"  variant="outlined" /> */}
                                 <TextField
-                                    error={!!confirmPasswordError}
-                                    id="outlined-basic"
+                                    name="confirmPassword"
                                     className='inp-box'
                                     label="Confirm*"
                                     variant="outlined"
                                     type={showPassword ? 'text' : 'password'}
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    // helperText={confirmPasswordError}
+                                    value={signUpObj.confirmPassword}
+                                    error={errObj.confirmPasswordError}
+                                    helperText={errObj.confirmPasswordHelper}
                                 />
                             </div>
-                            <span className="pass-setup-txt">Use 8 or more characters with a mix letters, numbers &
-                                symbols</span>
+                            <span className="pass-setup-txt">Use 8 or more characters with a mix of letters, numbers & symbols</span>
                         </div>
-
                     </div>
                     <div className='show-pass'>
                         <FormControlLabel
@@ -146,23 +179,19 @@ function Signup() {
                         />
                     </div>
                     <div className="signin-register-boton-box inp-div">
-                        <Button variant="text" >Sign in instead</Button>
+                        <Button variant="text">Sign in instead</Button>
                         <Button variant="contained" onClick={handleRegister}>Register</Button>
                     </div>
-
                 </div>
                 <div className="img-box">
                     <img src="https://lh4.googleusercontent.com/proxy/m6tdf4WP7sUYOzq7AwqGT1m6r3Abj8X0jdmpfPGgpsmQIHp5-AOvdMTtEI8Kg_B3ei2H0ETg0mLhTvsidzaWQWkNtAJhmpw2yYcq5OjyNEWDyhZ7jlTj8wy_yoZz=w1366-h603" alt="Not Available" />
-                    <p>One account.All of Fundo</p>
-                    <p>working for you</p>
+                    <p>One account. All of Fundo working for you</p>
                 </div>
-
             </div>
             <div className="extra-option-box">
                 <div>
                     <select className="mySelect-inp">
                         <option value="English (United States)">English (United States)</option>
-
                     </select>
                 </div>
                 <div className="extra-option-txt-box">
