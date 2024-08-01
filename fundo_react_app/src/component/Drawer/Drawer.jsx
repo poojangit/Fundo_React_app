@@ -1,16 +1,9 @@
 import * as React from 'react';
+import './Drawer.scss'
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -21,6 +14,10 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import NavBar from '../NavBar/NavBar';
+import TechNoteOne from '../TechNote1/TechNoteOne';
+import Note from '../TechNote1/TechNoteOne';
+import TechNoteTwo from '../Technote2/TechNoteTwo';
+
 
 const drawerWidth = 240;
 
@@ -52,10 +49,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     ({ theme, open }) => ({
         width: drawerWidth,
         flexShrink: 0,
-        marginTop : "100px",
+        // marginTop: "100px",
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
-        
+        marginTop: '100px',
         ...(open && {
             ...openedMixin(theme),
             '& .MuiDrawer-paper': openedMixin(theme),
@@ -84,35 +81,13 @@ export default function NavDrawer() {
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            {/* <AppBar position="fixed" open={open}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{
-                            marginRight: 5,
-                            ...(open && { display: 'none' }),
-                        }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+        <Box sx={{ }}>
 
-                </Toolbar>
-            </AppBar> */}
-            <NavBar handleDrawer = {handleDrawer}/>
+            <NavBar handleDrawer={handleDrawer} />
             <Drawer variant="permanent" open={open}>
-                {/* <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </DrawerHeader> */}
-               
-                <List>
+                <List >
                     {menuItems.map((item, index) => (
-                        <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+                        <ListItem key={item.text} disablePadding sx={{ display: 'block'}}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -122,7 +97,7 @@ export default function NavDrawer() {
                             >
                                 <ListItemIcon
                                     sx={{
-                                        minWidth: 0,
+                                        // minWidth: 0,
                                         mr: open ? 3 : 'auto',
                                         justifyContent: 'center',
                                     }}
@@ -136,8 +111,11 @@ export default function NavDrawer() {
                 </List>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-               
+
+            <TechNoteOne/>
+                    {/* <TechNoteTwo/> */}
                 {/* Add your main content here */}
+                
             </Box>
         </Box>
     );
