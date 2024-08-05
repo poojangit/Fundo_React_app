@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import './Login.scss';
-import { signIn } from '../../services/UserServices';
+import { LoginPost } from '../../services/UserServices';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -33,7 +33,7 @@ function Login() {
         };
 
         if (!loginObj.email) {
-            newErrObj.emailError = 'Please enter your email or phone';
+            newErrObj.emailError = 'Please enter your email';
             isValidField = false;
         }
 
@@ -47,11 +47,11 @@ function Login() {
         if (isValidField) {
             console.log(loginObj);
             // console.log('Login Success');
-            signIn(loginObj).then((response)=>{
+            LoginPost (loginObj).then((response)=>{
                 console.log(response.data.id);
                 localStorage.setItem("token",response.data.id)
                 console.log('Login successful');
-                navigate("/dashboard")
+                navigate('/')
                 // const token = localStorage.getItem("token")
                 // console.log(token);
             })
@@ -60,6 +60,10 @@ function Login() {
             })
 
         }
+    };
+
+    const handleSignUp = () => {
+        navigate('/register');
     };
 
     return (
@@ -100,7 +104,7 @@ function Login() {
                 </div>
 
                 <div className="create-login">
-                    <p>Create account</p>
+                    <p onClick={handleSignUp} style={{ cursor: 'pointer', color: 'blue' }}>Create account</p>
                     <Button variant="contained" onClick={handleLogin}>Login</Button>
                 </div>
             </div>

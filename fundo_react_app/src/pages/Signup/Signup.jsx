@@ -3,9 +3,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-// import signUpImage from './assets/signup.png';
 import './Signup.scss'
-import { signUp } from '../../services/UserServices';
+import { RegisterPost} from '../../services/UserServices';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
@@ -72,20 +71,10 @@ function Signup() {
             isValid = false;
         }
 
-        // if (!signUpObj.confirmPassword) {
-        //     newErrObj.confirmPasswordError = true;
-        //     newErrObj.confirmPasswordHelper = 'Confirm password field is mandatory';
-        //     isValid = false;
-        // } else if (signUpObj.password !== signUpObj.confirmPassword) {
-        //     newErrObj.confirmPasswordError = true;
-        //     newErrObj.confirmPasswordHelper = 'Passwords do not match';
-        //     isValid = false;
-        // }
-
         setErrObj(newErrObj);
 
         if (isValid) {
-            signUp(signUpObj)
+            RegisterPost (signUpObj)
             .then((response)=>{
                 console.log(response);
                 console.log('Registration successful');
@@ -94,8 +83,6 @@ function Signup() {
             .catch((error) => {
                 console.log(error);
             })
-
-            
         }
     };
 
