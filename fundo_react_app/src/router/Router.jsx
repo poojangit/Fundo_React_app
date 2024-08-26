@@ -13,22 +13,22 @@ import { Reminder } from '../component/NotesCompo/Reminder';
 import { Edit } from '../component/NotesCompo/Edit';
 
 
-export  default function Router() {
+export default function Router() {
   return (
     <div>
       <BrowserRouter>
-      <Routes >
-      <Route path='/login' element={ <AuthRoute><Login /></AuthRoute>} />
-                <Route path='/register' element={<AuthRoute><SignUp /></AuthRoute>} />
-                <Route path='/' element={<ProtectedRoute><DrawerBar /></ProtectedRoute>}>
-                    <Route path='/' element={<NoteInput />} />
-                    <Route path='/archive' element={<Archive />} />
-                    <Route path='/trash' element={<TrashNotes />} />
-                    <Route path='/reminder' element={<Reminder />} />
-                    <Route path='/edit' element={<Edit/>}/>
-                </Route>
-      </Routes>
-      
+        <Routes >
+          <Route path='/login' element={<AuthRoute><Login /></AuthRoute>} />
+          <Route path='/register' element={<AuthRoute><SignUp /></AuthRoute>} />
+          <Route path='/' element={<ProtectedRoute><DrawerBar /></ProtectedRoute>}>
+            <Route path='/' element={<NoteInput />} />
+            <Route path='/archive' element={<Archive />} />
+            <Route path='/trash' element={<TrashNotes />} />
+            <Route path='/reminder' element={<Reminder />} />
+            <Route path='/edit' element={<Edit />} />
+          </Route>
+        </Routes>
+
       </BrowserRouter>
     </div>
   )

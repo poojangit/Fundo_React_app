@@ -51,8 +51,7 @@ export const NoteBoxOne = () => {
     const handleInput = () => {    
         setChangeInput(false)
     }
-    const handleInputClose= async (notesData)=>{
-       
+    const handleInputClose= async (notesData)=>{  
         if(notesData.title !== '' || notesData.description !==''){
             console.log(notesData.title )
           let data= await  postNotes(notesData)

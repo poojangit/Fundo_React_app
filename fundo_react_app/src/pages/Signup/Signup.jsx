@@ -86,6 +86,10 @@ function Signup() {
         }
     };
 
+    const handleSignIn = ()  => {
+        navigate('/login')
+    }
+    
     return (
         <div className="main-cnt">
             <div className="box-cnt">
@@ -166,7 +170,7 @@ function Signup() {
                         />
                     </div>
                     <div className="signin-register-boton-box inp-div">
-                        <Button variant="text">Sign in instead</Button>
+                        <Button variant="text" onClick={handleSignIn}>Sign in instead</Button>
                         <Button variant="contained" onClick={handleRegister}>Register</Button>
                     </div>
                 </div>
