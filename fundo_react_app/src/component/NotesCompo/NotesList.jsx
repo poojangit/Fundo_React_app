@@ -89,8 +89,8 @@ export const NotesList = ({ noteObj, key }) => {
       <div key={key} className='gridItemMain' style={{ backgroundColor: noteObj.color }} >
         <div className='gridItem'>
           <div onClick={() => editModal(noteObj, key)} >
-            <h3>{noteObj.title}</h3>
-            <p>{noteObj.description}</p>
+            <h3 id='grid-title-text'>{noteObj.title}</h3>
+            <p id='grid-discription-text'>{noteObj.description}</p>
           </div>
           <div className='noteBoxIcon'>
             <PushPinOutlinedIcon style={{ fontSize: "25px" }} />

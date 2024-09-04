@@ -68,7 +68,7 @@ export const NoteBoxOne = () => {
                 <Grid sx={12} lg={8} xl={10}  className='serachInputOne_Parenet'>
                     <Box>
                         <Search className='seracheInput_first' style={{
-                            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px ', color: 'black', width: "600px", height: '50px', borderRadius: "10px", display: "flex", marginLeft:'85px',
+                            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px ', color: 'black', width: "600px", height: 'fit-content', borderRadius: "10px", display: "flex", marginLeft:'85px',
                             justifyContent: 'space-between', textAlign: "center"
                         }}  >
 

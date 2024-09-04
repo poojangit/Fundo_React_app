@@ -154,14 +154,14 @@ export const SearchInput2 = ({ handleInputClose }) => {
                     </div>
                     <div>
                         <TextareaAutosize
-                            placeholder="description"
+                            placeholder="Take a note"
                             inputProps={{ 'aria-label': 'search' }}
                             color=""
                             value={notesData.description}
                             name='description'
                             rows={1}
                             onChange={handleInputChange}
-                            style={{ border: 'none', width: "100%", outline: "none", paddingLeft: "23px", fontSize: '15px', marginTop: "20px", backgroundColor: notesData.color ? notesData.color : null }}
+                            style={{ border: 'none', width: 'fit-content', outline: "none", paddingLeft: "23px", fontSize: '15px', marginTop: "20px", backgroundColor: notesData.color ? notesData.color : null }}
 
                         />
                     </div>

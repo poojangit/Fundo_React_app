@@ -188,13 +188,11 @@ export default function CustomNavBar({ handleDrawerOpen }) {
   console.log(loading);
 
   const changeView = () => {
-    // Dispatch the appropriate action based on the current state
     if (isTrue) {
       dispatch(setFalse());
     } else {
       dispatch(setTrue());
     }
-    // Store the initial state before the action is dispatched
   }
 
   const [inputSearch, setInputSearch] = useState(initialSearchValue)

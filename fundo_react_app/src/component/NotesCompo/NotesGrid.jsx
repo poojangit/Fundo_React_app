@@ -44,7 +44,6 @@ Fade.propTypes = {
 
 export const NotesGrid = () => {
   const [fetchData, setFetchData] = useState([]);
-  // const [resColor, setResColor] = useState();
   const dispatch = useDispatch();
   const ComponentRender = useSelector((state) => state.ComponentRender);
   const [isComponentRender, setIsComponentRender] = useState(ComponentRender);

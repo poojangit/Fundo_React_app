@@ -9,14 +9,13 @@
 
 .gridItemMain {
     width: 235px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: flex-start;
     height: fit-content;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    padding: 20px 10px 5px 10px;
+    padding: 30px 15px 10px 15px;
     border-radius: 10px;
     margin-top: 10px;
 
@@ -24,15 +23,33 @@
 
 .gridItem {
 
-    height: fit-content;
-    text-align: left;
-
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+  height: fit-content;
+  // height: 70px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  overflow: hidden;
+  white-space: normal; /* Allow text to wrap to the next line */
 
 }
-
+.gridItem h3, 
+.gridItem p {
+  .gridItem h3, 
+  .gridItem p {
+      overflow: hidden;
+      text-overflow: ellipsis; 
+      white-space: nowrap; 
+      width: 100%; /* Ensure it takes up the full width of the container */
+  }
+}
+#grid-discription-text{
+margin-bottom: 20px;
+}
+ 
+#grid-title-text {
+  margin-bottom: 25px;
+}
 .gridItemMain:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
@@ -92,7 +109,7 @@
     }
 
     .gridItemMain {
-        width: 400px !important;
+        width: 300px !important;
        margin-left: 20%;
     }
     .IslistViewTrue{
